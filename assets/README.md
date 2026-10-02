@@ -41,3 +41,20 @@ Store reusable music and sound-effect sources in `music/`.
 - Prefer 16 kHz, 16-bit mono PCM when it matches the current BSP audio path.
 - Check Flash and internal-RAM cost before embedding audio; stream or chunk long recordings.
 - Do not commit media without redistribution permission.
+
+## Token Dashboard fonts
+
+`fonts/NotoSansCJKsc-Regular.otf` is Noto Sans CJK SC Regular from
+[Google Noto CJK](https://github.com/notofonts/noto-cjk), distributed under the
+SIL Open Font License 1.1 in `fonts/OFL.txt`. Source SHA256:
+`2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b`.
+The reusable licensed source was copied from the existing local Passport project.
+`fonts/token_font_{12,16,20,36}.c` are uncompressed 4bpp LVGL subsets compiled by
+`main/CMakeLists.txt`. `fonts/token-characters.txt` and `token_characters.h`
+record all fixed UI glyphs plus printable ASCII. Regenerate with
+`python3 tools/generate_token_fonts.py --converter /path/to/lv_font_conv`
+using pinned converter 1.5.3. They provide no arbitrary dynamic-text contract.
+
+`images/token-dashboard-preview.png` is an application preview rendered with
+the pinned LVGL and synthetic host-test counters. It contains no personal usage
+or hardware identifiers. Recreate source frames with `tools/test_token_ui.sh`.

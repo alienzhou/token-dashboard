@@ -39,3 +39,18 @@
 - 与当前 BSP 音频路径匹配时优先采用 16 kHz、16 位单声道 PCM。
 - 嵌入音频前评估 Flash 与内部 RAM 成本；长录音应流式或分块。
 - 无再分发许可不提交媒体文件。
+
+## Token 面板字体
+
+`fonts/NotoSansCJKsc-Regular.otf` 是 [Google Noto CJK](https://github.com/notofonts/noto-cjk)
+的简体中文 Regular，按 `fonts/OFL.txt` 中的 SIL Open Font License 1.1 分发。源 SHA256：
+`2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b`。
+许可完整的可复用字体从已有本地 Passport 项目复制。
+`fonts/token_font_{12,16,20,36}.c` 为未压缩的 4bpp LVGL 子集，注册在 `main/CMakeLists.txt`。
+`fonts/token-characters.txt` 和 `token_characters.h` 记录固定界面全部文字及可打印 ASCII。
+使用固定版本 lv_font_conv 1.5.3，运行
+`python3 tools/generate_token_fonts.py --converter /path/to/lv_font_conv` 可重新生成。
+字体不承诺覆盖任意动态文字。
+
+`images/token-dashboard-preview.png` 使用锁定的 LVGL 和合成主机测试数字生成应用预览，
+不包含个人用量或硬件标识。运行 `tools/test_token_ui.sh` 可重新生成原始界面。

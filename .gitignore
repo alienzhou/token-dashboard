@@ -11,3 +11,13 @@ managed_components/
 /.agents/skills/passport-build
 /.agents/skills/passport-device-test
 /.agents/skills/passport-debug
+
+# Python companion generated state and caches
+__pycache__/
+*.pyc
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.log
+.DS_Store
