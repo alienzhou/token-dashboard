@@ -32,7 +32,7 @@
 ./tools/run-token-dashboard.sh --no-ble
 ```
 
-脚本按需创建仓库内虚拟环境并安装锁定的 Bleak 0.22.3，需要 Python 3.9 及以上。macOS 使用包含蓝牙用途声明的 `build/desktop/Token Dashboard.app`；`tools/package-token-macos.sh` 通过 py2app 0.28.8 的 alias 模式生成。这是本机启动器，依赖当前路径的源码和虚拟环境，不是可移到另一台电脑的独立应用；移动目录后需重新打包。启动器在后台运行，需另行打开面板 URL。打开[本地面板](http://127.0.0.1:8964)。只监听本机回环地址，不加载外部脚本或字体，蓝牙只传汇总统计。macOS 需要给启动它的终端或应用蓝牙权限；Linux 需要 BlueZ，Windows 需要支持 BLE 的适配器。这些平台尚未完成设备测试。可指定 `--port`、`--interval`、`--device`（蓝牙 UUID/地址）和 `--state`。发现多台设备时不自动挑选，会显示标识，需用 `--device` 指定目标。
+脚本按需创建仓库内虚拟环境并安装锁定的 Bleak 0.22.3，需要 Python 3.9 及以上。macOS 使用包含蓝牙用途声明的 `build/desktop/Token Dashboard.app`；`tools/package-token-macos.sh` 通过 py2app 0.28.8 的 alias 模式生成。脚本通过 macOS LaunchServices 启动应用，将输出转发到终端，并将 Ctrl+C 传给该应用实例；即使从 Warp 启动，蓝牙权限也归属 Token Dashboard。这是本机启动器，依赖当前路径的源码和虚拟环境，不是可移到另一台电脑的独立应用；移动目录后需重新打包。启动器在后台运行，需另行打开面板 URL。打开[本地面板](http://127.0.0.1:8964)。只监听本机回环地址，不加载外部脚本或字体，蓝牙只传汇总统计。macOS 需要给 Token Dashboard 蓝牙权限；Linux 需要 BlueZ，Windows 需要支持 BLE 的适配器。这些平台尚未完成设备测试。可指定 `--port`、`--interval`、`--device`（蓝牙 UUID/地址）和 `--state`。发现多台设备时不自动挑选，会显示标识，需用 `--device` 指定目标。
 
 未安装登录启动项。保持采集器运行即可持续采集和自动重连。大量历史的首次扫描较慢，后续只处理新增或变化的记录。
 

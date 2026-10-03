@@ -43,7 +43,7 @@ Open the Mac's **Terminal** app. Type `cd` followed by **one space**, drag the e
 bash tools/run-token-dashboard.sh
 ```
 
-Wait for the first-time dependency installation and allow Bluetooth access when prompted. A line displaying `http://127.0.0.1:8964` confirms startup. Keep Terminal open and leave this checkout in place: the macOS launcher depends on it.
+Wait for the first-time dependency installation and allow **Token Dashboard** Bluetooth access when prompted. A line displaying `http://127.0.0.1:8964` confirms startup. The same command works from Warp. Keep Terminal open and leave this checkout in place: the macOS launcher depends on it.
 
 **3. View and explore the dashboard.**
 

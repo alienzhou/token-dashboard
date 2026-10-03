@@ -11,7 +11,7 @@ fi
 if [[ "$(uname -s)" == "Darwin" ]]; then
     app="$root/build/desktop/Token Dashboard.app/Contents/MacOS/Token Dashboard"
     if [[ ! -x "$app" ]]; then "$root/tools/package-token-macos.sh"; fi
-    exec "$app" "$@"
+    exec build/companion-venv/bin/python companion/launch_macos.py "$app" "$@"
 fi
 export PYTHONPATH="$root/companion${PYTHONPATH:+:$PYTHONPATH}"
 exec build/companion-venv/bin/python -m token_dashboard "$@"

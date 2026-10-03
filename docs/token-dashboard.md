@@ -56,6 +56,9 @@ From the repository root:
 The script creates a repository-local virtual environment and installs pinned
 Bleak 0.22.3 as needed. On macOS it uses the bundled
 `build/desktop/Token Dashboard.app`, whose Info.plist declares Bluetooth usage.
+The shell script launches it through macOS LaunchServices, streams its output
+to the terminal, and forwards Ctrl+C to that app instance. This makes Bluetooth
+permission belong to Token Dashboard even when launched from Warp.
 `tools/package-token-macos.sh` creates it with py2app 0.28.8 in alias mode.
 This local launcher requires the checkout and virtual environment to remain at
 their current paths; it is not a portable standalone application. Rebuild it
@@ -63,7 +66,7 @@ after moving the checkout. It runs in the background; open the dashboard URL
 separately. Python 3.9+ is required. Open
 [the local dashboard](http://127.0.0.1:8964). It is bound only to loopback, loads
 no external scripts/fonts, and transmits only aggregates over BLE. macOS must
-grant the launching terminal/application Bluetooth permission. Linux requires
+grant Token Dashboard Bluetooth permission. Linux requires
 BlueZ; Windows requires a supported BLE adapter. Those platforms are not
 hardware-tested. `--port`, `--interval`, `--device` (BLE UUID/address), and
 `--state` are optional. With multiple devices, auto-connect stops and reports
