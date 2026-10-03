@@ -29,29 +29,44 @@
 
 ## 开始使用
 
-电脑端已在 **macOS** 验证。准备 **Python 3.9+**，并先将[合并固件](#构建与刷写)刷入 AI Passport。设备无需配网。
+电脑端已在 **macOS** 验证。先将[合并固件](#构建与刷写)刷入 AI Passport，设备无需配网。在这台 Mac 上使用过 AI 工具，才会有可采集的本地记录。
 
-**1. 启动采集器。**
+**1. 下载电脑端。**
+
+需要 **Python 3.9+**。在终端运行 `python3 --version` 检查；若没有安装，使用[官网 macOS 安装包](https://www.python.org/downloads/macos/)。打开[源码仓库](https://github.com/alienzhou/token-dashboard)，点 **Code → Download ZIP**，下载后解压，找到里面同时含有 `tools` 和 `companion` 的项目文件夹。
+
+**2. 在终端启动。**
+
+打开 Mac 的**终端**应用，输入 `cd` 并在后面加**一个空格**，把解压后的项目文件夹拖入终端，然后按**回车**。[拖入文件夹会自动填入路径](https://support.apple.com/guide/terminal/drag-items-into-a-terminal-window-trml106/mac)，不用手动输入。接着复制下面的命令，粘贴到终端并回车：
+
+```bash
+bash tools/run-token-dashboard.sh
+```
+
+等待首次依赖安装，出现蓝牙权限提示时允许访问。看到 `电脑端面板：http://127.0.0.1:8964` 表示启动成功。保持终端打开，也请保留当前源码目录，macOS 启动器依赖此目录。
+
+**3. 打开网页查看。**
+
+在浏览器访问 [127.0.0.1:8964](http://127.0.0.1:8964)，第一次扫描历史可能稍慢。点击活动图旁的**全部**或工具名，切换统计；把鼠标移到热力格上，查看那天的日期与 Token 数。网页会显示连接状态和最近采集、同步时间。采集器运行期间每 5 秒采集一次。
+
+**4. 配对随身设备。**
+
+开启 Mac 蓝牙，让设备靠近。长按设备**确认键**，采集器会自动发现设备；在电脑配对弹窗输入屏幕上的六位码。网页显示**蓝牙已连接·自动同步**即同步成功。窗口超时后先取消旧弹窗，再长按确认键重试。设备上下键切工具，确认切用量/同步页，双击确认切半年。网页筛选和设备当前选择相互独立。
+
+**5. 停止与下次使用。**
+
+继续正常使用 AI 工具即可采集。在终端按 `Ctrl+C` 停止；下次重复第 2 步，已采集历史自动接续。只在电脑采集和查看时，改用 `bash tools/run-token-dashboard.sh --no-ble` 启动。
+
+<details>
+<summary>已经熟悉 Git？</summary>
 
 ```bash
 git clone --branch feature/token-dashboard https://github.com/alienzhou/token-dashboard.git
 cd token-dashboard
-./tools/run-token-dashboard.sh
+bash tools/run-token-dashboard.sh
 ```
 
-首次运行会安装依赖；出现蓝牙权限提示时允许访问。请保留当前源码目录，macOS 启动器依赖此目录。
-
-**2. 打开本地面板。**
-
-访问 [127.0.0.1:8964](http://127.0.0.1:8964)。只想在电脑采集和查看时，使用 `./tools/run-token-dashboard.sh --no-ble` 启动。
-
-**3. 配对随身设备。**
-
-长按设备**确认键**，在电脑配对弹窗输入屏幕显示的六位码。设备显示**已连接**即建立同步；配对窗口超时后再次长按确认键。
-
-**4. 继续创作。**
-
-保持采集器运行，正常使用 AI 工具即可每 5 秒采集。电脑按 `Ctrl+C` 退出，下次启动会保留已采集历史。
+</details>
 
 ## 用量，一眼看清
 

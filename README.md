@@ -29,29 +29,44 @@ Automatic local collection. A clear dashboard. Your progress, in your pocket.
 
 ## Get started
 
-The desktop companion has been tested on **macOS**. Install **Python 3.9+** and flash the [merged firmware](#build-and-flash) to your AI Passport first. The device needs no Wi-Fi setup.
+The desktop companion has been tested on **macOS**. Flash the [merged firmware](#build-and-flash) to your AI Passport first; the device needs no Wi-Fi setup. Use an AI tool on this same Mac so local usage records exist.
 
-**1. Start the companion.**
+**1. Download the companion.**
+
+Python **3.9+** is required. In Terminal, run `python3 --version` to check; if unavailable, use the [official macOS installer](https://www.python.org/downloads/macos/). Open [the source repository](https://github.com/alienzhou/token-dashboard), click **Code → Download ZIP**, and extract it. Locate the extracted folder containing `tools` and `companion`.
+
+**2. Start it from Terminal.**
+
+Open the Mac's **Terminal** app. Type `cd` followed by **one space**, drag the extracted project folder into the window, and press **Return**. This [inserts the folder's path](https://support.apple.com/guide/terminal/drag-items-into-a-terminal-window-trml106/mac) without typing it by hand. Then paste this command and press Return:
+
+```bash
+bash tools/run-token-dashboard.sh
+```
+
+Wait for the first-time dependency installation and allow Bluetooth access when prompted. A line displaying `http://127.0.0.1:8964` confirms startup. Keep Terminal open and leave this checkout in place: the macOS launcher depends on it.
+
+**3. View and explore the dashboard.**
+
+Open [127.0.0.1:8964](http://127.0.0.1:8964) in your browser. The first historical scan may take a little longer. Use the first tab beside the activity chart for all agents, or choose an agent name to filter the statistics; hover over a heatmap cell for its date and token count. The page shows connection status and the latest collection/sync time. Collection happens every five seconds while the companion runs.
+
+**4. Pair the wearable.**
+
+Turn on the Mac's Bluetooth and bring the device nearby. Hold **OK** on the device; the companion discovers it automatically. Enter the displayed six-digit code in the computer's pairing dialog. The web connection indicator reports automatic Bluetooth sync when synchronization succeeds. If the pairing window expires, cancel the old dialog and hold OK again. On the device, Up/Down switches agents, OK opens usage/sync, and double OK changes the half-year window. Web filtering and the device's selection are independent.
+
+**5. Stop and resume.**
+
+Continue using your AI tools normally. Press `Ctrl+C` in Terminal to stop the companion. Next time, repeat step 2; saved history resumes automatically. To collect and browse without Bluetooth, use `bash tools/run-token-dashboard.sh --no-ble` instead.
+
+<details>
+<summary>Already use Git?</summary>
 
 ```bash
 git clone --branch feature/token-dashboard https://github.com/alienzhou/token-dashboard.git
 cd token-dashboard
-./tools/run-token-dashboard.sh
+bash tools/run-token-dashboard.sh
 ```
 
-The first run installs dependencies. Allow Bluetooth access when prompted. Keep this checkout in place: the macOS launcher depends on it.
-
-**2. Open the local dashboard.**
-
-Visit [127.0.0.1:8964](http://127.0.0.1:8964). To collect and browse without a device, start with `./tools/run-token-dashboard.sh --no-ble`.
-
-**3. Pair the wearable.**
-
-Hold **OK** on the device, then enter its displayed six-digit code in the computer's pairing dialog. The device shows **Connected** when synchronization is established. Hold OK again if the pairing window expires.
-
-**4. Keep creating.**
-
-Leave the companion running and use your AI tools normally. Collection runs every five seconds; press `Ctrl+C` to stop. Collected history remains available on the next launch.
+</details>
 
 ## Your usage, at a glance
 

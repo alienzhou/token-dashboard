@@ -43,6 +43,8 @@ across source-log cleanup; it has no automatic expiration. Use a different
 
 ## Start the companion
 
+For a first-time setup, follow the [README's step-by-step download, Terminal and pairing guide](../README.md#get-started). It also explains how to use the web filters and stop/resume collection.
+
 From the repository root:
 
 ```bash
